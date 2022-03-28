@@ -213,7 +213,7 @@ Transform:
   m_GameObject: {fileID: 176715984}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 4.05, y: 7.04, z: 2.37}
+  m_LocalScale: {x: 8, y: 16, z: 8}
   m_Children: []
   m_Father: {fileID: 0}
   m_RootOrder: 4
@@ -331,7 +331,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!65 &363859127
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -633,6 +633,6 @@ MonoBehaviour:
   boids: []
   MinSpeed: 0.35
   MaxSpeed: 6.71
-  NeighborDistance: 2.43
+  NeighborDistance: 8.36
   RotationSpeed: 1.49
   GoalPos: {x: 0, y: 0, z: 0}
