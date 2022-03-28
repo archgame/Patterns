@@ -25,6 +25,9 @@ public class FlockManager : MonoBehaviour
     [Range(0.0f, 5.0f)]
     public float RotationSpeed;
 
+    //step 5
+    public Vector3 GoalPos;
+
     //step 1
     // Start is called before the first frame update
     private void Start()
@@ -42,12 +45,23 @@ public class FlockManager : MonoBehaviour
             //step 2 fish going forward
             boids[i].GetComponent<Boid>().Manager = this;
         }
+
+        GoalPos = this.transform.position; //step 5
     }
 
     //step 3
     // Update is called once per frame
     private void Update()
     {
+        //GoalPos = this.transform.position; //step 5
+        //step 6
+        if (Input.GetMouseButtonDown(0))
+        {
+            float x = Random.Range(-Limits.x, Limits.x);
+            float y = Random.Range(-Limits.y, Limits.y);
+            float z = Random.Range(-Limits.z, Limits.z);
+            GoalPos = this.transform.position + new Vector3(x, y, z);
+        }
         for (int i = 0; i < BoidCount; i++)
         {
             //step 3 update boids

@@ -24,6 +24,15 @@ public class Boid : MonoBehaviour
     //step 3
     public void BoidUpdate()
     {
+        //step 8, random speed/behaviour
+        if (Random.Range(0, 100) < 10)
+            Speed = Random.Range(Manager.MinSpeed, Manager.MaxSpeed);
+        if (Random.Range(0, 100) > 20)
+        {
+            transform.Translate(0, 0, Time.deltaTime * Speed); //z is forward direction
+            return;
+        }
+
         GameObject[] boids;
         boids = Manager.boids;
 
@@ -48,7 +57,7 @@ public class Boid : MonoBehaviour
 
             if (distance < 1.0f) //hard coded, how close we can be to another boid before avoiding it
             {
-                avoid = avoid + (this.transform.position - go.transform.position);
+                avoid = avoid + (this.transform.position - go.transform.position) * 2;
             }
 
             Boid boidScript = go.GetComponent<Boid>();
@@ -57,7 +66,8 @@ public class Boid : MonoBehaviour
 
         if (groupSize > 0)
         {
-            groupCenter = groupCenter / groupSize;
+            //groupCenter = groupCenter / groupSize; //step 3
+            groupCenter = groupCenter / groupSize + (Manager.GoalPos - this.transform.position); //step 5
             groupSpeed = groupSpeed / groupSize;
 
             Vector3 direction = (groupCenter + avoid) - transform.position;

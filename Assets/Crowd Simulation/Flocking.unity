@@ -343,10 +343,11 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   BoidPrefab: {fileID: 1689380321707967852, guid: 9a4e2b72779b14d4ab023b8a6cfe2726, type: 3}
-  BoidCount: 20
-  Limits: {x: 5, y: 5, z: 5}
+  BoidCount: 50
+  Limits: {x: 10, y: 10, z: 10}
   boids: []
-  MinSpeed: 1.46
-  MaxSpeed: 7.87
-  NeighborDistance: 0
-  RotationSpeed: 0
+  MinSpeed: 0.35
+  MaxSpeed: 1
+  NeighborDistance: 2.5
+  RotationSpeed: 2.5
+  GoalPos: {x: 0, y: 0, z: 0}
