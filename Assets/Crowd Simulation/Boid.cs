@@ -6,6 +6,7 @@ public class Boid : MonoBehaviour
 {
     public FlockManager Manager;
     private float Speed;
+    private bool turning = false; //step 9
 
     // Start is called before the first frame update
     private void Start()
@@ -24,6 +25,29 @@ public class Boid : MonoBehaviour
     //step 3
     public void BoidUpdate()
     {
+        //step 9, determine the bounding box of the manager cube
+        Bounds b = new Bounds(Manager.transform.position, Manager.Limits * 2);
+        //if boid is outside the bounds of the cube then start turning around
+        if (!b.Contains(this.transform.position))
+        {
+            turning = true;
+        }
+        else
+        {
+            turning = false;
+        }
+        if (turning)
+        {
+            Vector3 direction = Manager.transform.position - transform.position;
+            Quaternion quat = Quaternion.LookRotation(direction);
+            transform.rotation = Quaternion.Slerp(
+                this.transform.rotation,
+                quat,
+                Manager.RotationSpeed * Time.deltaTime);
+            transform.Translate(0, 0, Time.deltaTime * Speed); //z is forward direction
+            return;
+        }
+
         //step 8, random speed/behaviour
         if (Random.Range(0, 100) < 10)
             Speed = Random.Range(Manager.MinSpeed, Manager.MaxSpeed);
