@@ -55,6 +55,8 @@ public class FlockManager : MonoBehaviour
     {
         //GoalPos = this.transform.position; //step 5
         //step 6
+        GoalPos = this.transform.position; /*/ step 10
+        //step 6
         if (Input.GetMouseButtonDown(0))
         {
             float x = Random.Range(-Limits.x, Limits.x);
@@ -62,6 +64,7 @@ public class FlockManager : MonoBehaviour
             float z = Random.Range(-Limits.z, Limits.z);
             GoalPos = this.transform.position + new Vector3(x, y, z);
         }
+        //*/
         for (int i = 0; i < BoidCount; i++)
         {
             //step 3 update boids

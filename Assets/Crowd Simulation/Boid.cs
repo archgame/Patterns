@@ -28,9 +28,18 @@ public class Boid : MonoBehaviour
         //step 9, determine the bounding box of the manager cube
         Bounds b = new Bounds(Manager.transform.position, Manager.Limits * 2);
         //if boid is outside the bounds of the cube then start turning around
+        RaycastHit hit; //step 10
+        Vector3 direction = Manager.transform.position - transform.position;
         if (!b.Contains(this.transform.position))
         {
             turning = true;
+        }
+        else if (Physics.Raycast(this.transform.position, this.transform.forward * 5, out hit)) //step 10
+        {
+            //
+            turning = true;
+            //Debug.DrawRay(this.transform.position, this.transform.forward * 50, Color.red);
+            direction = Vector3.Reflect(this.transform.forward, hit.normal);
         }
         else
         {
@@ -38,7 +47,6 @@ public class Boid : MonoBehaviour
         }
         if (turning)
         {
-            Vector3 direction = Manager.transform.position - transform.position;
             Quaternion quat = Quaternion.LookRotation(direction);
             transform.rotation = Quaternion.Slerp(
                 this.transform.rotation,
@@ -94,7 +102,7 @@ public class Boid : MonoBehaviour
             groupCenter = groupCenter / groupSize + (Manager.GoalPos - this.transform.position); //step 5
             groupSpeed = groupSpeed / groupSize;
 
-            Vector3 direction = (groupCenter + avoid) - transform.position;
+            direction = (groupCenter + avoid) - transform.position;
             if (direction != Vector3.zero)
             {
                 Quaternion quat = Quaternion.LookRotation(direction);
