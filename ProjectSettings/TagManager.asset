@@ -8,6 +8,8 @@ TagManager:
   - CinemachineTarget
   - Agent
   - Target
+  - marker
+  - Sticky
   layers:
   - Default
   - TransparentFX

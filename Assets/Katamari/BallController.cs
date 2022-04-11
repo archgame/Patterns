@@ -8,6 +8,8 @@ public class BallController : MonoBehaviour
     [SerializeField]
     private float Speed;
 
+    private float Size = 1;
+
     private Rigidbody _rigidbody;
     private Camera _camera;
 
@@ -28,5 +30,14 @@ public class BallController : MonoBehaviour
         Vector3 move = (input.z * _camera.transform.forward) + (input.x * _camera.transform.right);
 
         _rigidbody.AddForce(move * Speed * Time.fixedDeltaTime); //fixed delta time
+    }
+
+    private void OnCollisionEnter(Collision collision)
+    {
+        if (collision.gameObject.CompareTag("Sticky") && collision.transform.localScale.magnitude <= Size)
+        {
+            collision.transform.parent = this.transform;
+            Size += collision.transform.localScale.magnitude;
+        }
     }
 }
