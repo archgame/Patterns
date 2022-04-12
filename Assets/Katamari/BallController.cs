@@ -29,7 +29,7 @@ public class BallController : MonoBehaviour
 
         Vector3 move = (input.z * _camera.transform.forward) + (input.x * _camera.transform.right);
 
-        _rigidbody.AddForce(move * Speed * Time.fixedDeltaTime); //fixed delta time
+        _rigidbody.AddForce(move * Speed * Time.fixedDeltaTime * Size); //fixed delta time
     }
 
     private void OnCollisionEnter(Collision collision)
