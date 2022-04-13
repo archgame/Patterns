@@ -2,10 +2,10 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public sealed class GWorld
+public sealed class GWorld //sealed helps us so we don't get any conflict (one access at a time)
 {
     private static readonly GWorld instance = new GWorld();
-    private static WorldStates world;
+    private static WorldStates world; //singleton
 
     static GWorld()
     {
