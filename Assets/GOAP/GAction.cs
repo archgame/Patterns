@@ -9,7 +9,7 @@ public abstract class GAction : MonoBehaviour //abstract because we are going to
     public string actionName = "Action"; //default action name
     public float cost = 1.0f; //planner will find the cheapest plan
     public GameObject target; //target where action takes place
-    public GameObject targetTag; //find game objects with tag in case no target set
+    public string targetTag; //find game objects with tag in case no target set
     public float duration = 0; //how long will agent spend at target performing action
     public WorldState[] preConditions; //world states needed for actions, gotten from inspector
     public WorldState[] afterEffects; //
