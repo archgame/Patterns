@@ -4005,6 +4005,30 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 2097377039005613206, guid: d36c43225f9391e4c8810c98eb7ef85e, type: 3}
+      propertyPath: target
+      value: 
+      objectReference: {fileID: 0}
+    - target: {fileID: 2097377039005613206, guid: d36c43225f9391e4c8810c98eb7ef85e, type: 3}
+      propertyPath: duration
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 2097377039005613206, guid: d36c43225f9391e4c8810c98eb7ef85e, type: 3}
+      propertyPath: targetTag
+      value: Door
+      objectReference: {fileID: 0}
+    - target: {fileID: 2097377039005613206, guid: d36c43225f9391e4c8810c98eb7ef85e, type: 3}
+      propertyPath: actionName
+      value: Go To Hospital
+      objectReference: {fileID: 0}
+    - target: {fileID: 2097377039005613206, guid: d36c43225f9391e4c8810c98eb7ef85e, type: 3}
+      propertyPath: afterEffects.Array.data[0].key
+      value: hasArrived
+      objectReference: {fileID: 0}
+    - target: {fileID: 2097377039005613206, guid: d36c43225f9391e4c8810c98eb7ef85e, type: 3}
+      propertyPath: afterEffects.Array.data[0].value
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 7880970886039044016, guid: d36c43225f9391e4c8810c98eb7ef85e, type: 3}
       propertyPath: m_RootOrder
       value: 13
@@ -4069,21 +4093,23 @@ MonoBehaviour:
   m_GameObject: {fileID: 2100191635}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 14efad8ea6319c649a9812382feb0cbc, type: 3}
+  m_Script: {fileID: 11500000, guid: f73197729f0c8e340a1b45282e97461c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  actionName: Action
+  actionName: Registering
   cost: 1
-  target: {fileID: 1000317771}
-  targetTag: 
-  duration: 0
-  preConditions: []
+  target: {fileID: 0}
+  targetTag: Reception
+  duration: 5
+  preConditions:
+  - key: hasArrived
+    value: 0
   afterEffects:
-  - key: isWaiting
+  - key: hasRegistered
     value: 0
   agent: {fileID: 0}
   running: 0
---- !u!114 &2100191637
+--- !u!114 &2100191640
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -4092,11 +4118,22 @@ MonoBehaviour:
   m_GameObject: {fileID: 2100191635}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 1386db0f290f06640a1ead33f3e6e86b, type: 3}
+  m_Script: {fileID: 11500000, guid: 30b8bda9321bc8743babfb6c0e3e54b3, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  actions: []
-  currentAction: {fileID: 0}
+  actionName: Go To Waiting Room
+  cost: 1
+  target: {fileID: 0}
+  targetTag: WaitingArea
+  duration: 0
+  preConditions:
+  - key: hasRegistered
+    value: 0
+  afterEffects:
+  - key: isWaiting
+    value: 0
+  agent: {fileID: 0}
+  running: 0
 --- !u!1 &2105955016
 GameObject:
   m_ObjectHideFlags: 0
