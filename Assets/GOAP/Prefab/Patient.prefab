@@ -2663,6 +2663,7 @@ GameObject:
   - component: {fileID: 2100191637}
   - component: {fileID: 4522080869726831911}
   - component: {fileID: 2100191640}
+  - component: {fileID: 948373282}
   m_Layer: 0
   m_Name: Patient
   m_TagString: Untagged
@@ -2723,7 +2724,7 @@ MonoBehaviour:
   cost: 1
   target: {fileID: 0}
   targetTag: Door
-  duration: 2
+  duration: 1
   preConditions: []
   afterEffects:
   - key: hasArrived
@@ -2760,7 +2761,7 @@ MonoBehaviour:
   cost: 1
   target: {fileID: 0}
   targetTag: Reception
-  duration: 5
+  duration: 2
   preConditions:
   - key: hasArrived
     value: 0
@@ -2791,6 +2792,31 @@ MonoBehaviour:
     value: 0
   afterEffects:
   - key: isWaiting
+    value: 0
+  agent: {fileID: 0}
+  running: 0
+--- !u!114 &948373282
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7881807149238628900}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: de33f5ea68b7e9e4f9d7d4069e8cbe23, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  actionName: Action
+  cost: 1
+  target: {fileID: 0}
+  targetTag: 
+  duration: 0
+  preConditions:
+  - key: atHospital
+    value: 0
+  afterEffects:
+  - key: isTreated
     value: 0
   agent: {fileID: 0}
   running: 0

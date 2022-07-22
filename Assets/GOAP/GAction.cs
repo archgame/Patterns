@@ -20,6 +20,9 @@ public abstract class GAction : MonoBehaviour //abstract because we are going to
 
     public WorldStates agentBeliefs; //internal/local states
 
+    public Ginventory inventory;
+    public WorldStates beliefs;
+
     public bool running = false;
 
     public GAction()
@@ -46,6 +49,9 @@ public abstract class GAction : MonoBehaviour //abstract because we are going to
                 effects.Add(w.key, w.value);
             }
         }
+
+        inventory = this.GetComponent<GAgent>().inventory;
+        beliefs = this.GetComponent<GAgent>().beliefs;
     }
 
     public bool IsAchievable()

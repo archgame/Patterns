@@ -17,11 +17,26 @@ public class Node //used for creating tree
         this.state = new Dictionary<string, int>(allstates);//make a copy of the dictionary
         this.action = action;
     }
+
+    public Node(Node parent, float cost, Dictionary<string, int> allstates, Dictionary<string, int> beliefstates, GAction action)
+    {
+        this.parent = parent;
+        this.cost = cost;
+        this.state = new Dictionary<string, int>(allstates);//make a copy of the dictionary
+        foreach (KeyValuePair<string, int> b in beliefstates)
+        {
+            if (!this.state.ContainsKey(b.Key))
+            {
+                this.state.Add(b.Key, b.Value);
+            }
+        }
+        this.action = action;
+    }
 }
 
 public class GPlanner
 {
-    public Queue<GAction> Plan(List<GAction> actions, Dictionary<string, int> goal, WorldState states)
+    public Queue<GAction> Plan(List<GAction> actions, Dictionary<string, int> goal, WorldStates beliefstates)
     {
         //find out which actions are useable
         List<GAction> usableActions = new List<GAction>();
@@ -32,7 +47,7 @@ public class GPlanner
         }
 
         List<Node> leaves = new List<Node>();
-        Node start = new Node(null, 0, GWorld.Instance.GetWorld().GetStates(), null);
+        Node start = new Node(null, 0, GWorld.Instance.GetWorld().GetStates(), beliefstates.GetStates(), null);
 
         bool success = BuildGraph(start, leaves, usableActions, goal);
 
